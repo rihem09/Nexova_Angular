@@ -19,20 +19,23 @@ import { RetirementComponent } from './FrontOffice/retirement/retirement.compone
 import { SavingsComponent } from './FrontOffice/savings/savings.component';
 import { TeamComponent } from './FrontOffice/team/team.component';
 import { TestimonialComponent } from './FrontOffice/testimonial/testimonial.component';
+import { AssuranceListComponent } from './Microservices/Assurances/assurance-list/assurance-list.component';
+import { AddassuranceComponent } from './Microservices/Assurances/addassurance/addassurance.component';
 
 const routes: Routes = [
-  { path: '', component: IndexComponent }, // Page d'accueil
+  { path: '', component: IndexComponent },  // ✅ Page d'accueil
+  { path: 'addassurance', component: AddassuranceComponent },  // ✅ Route pour Ajouter Assurance
   { path: 'about', component: AboutComponent },
   { path: 'appointment', component: AppointmentComponent },
   { path: 'claims', component: ClaimsComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'damage', component: DamageComponent },
   { path: 'espace-client', component: EspaceClientComponent },
-  { path: 'event', component: EventComponent },
+  { path: 'event', component: AboutComponent },
   { path: 'feature', component: FeatureComponent },
   { path: 'get-a-quote', component: GetAQuoteComponent },
   { path: 'news', component: NewsComponent },
-  { path: 'particulier', component: ParticulierComponent },
+  { path: 'particulier', component: AssuranceListComponent },
   { path: 'professionnel', component: ProfessionnelComponent },
   { path: 'retirement', component: RetirementComponent },
   { path: 'savings', component: SavingsComponent },
