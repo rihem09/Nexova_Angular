@@ -1,4 +1,4 @@
-;
+
 import { TestimonialComponent } from './FrontOffice/testimonial/testimonial.component';
 import { TeamComponent } from './FrontOffice/team/team.component';
 import { SavingsComponent } from './FrontOffice/savings/savings.component';
@@ -18,18 +18,28 @@ import { AppointmentComponent } from './FrontOffice/appointment/appointment.comp
 import { AboutComponent } from './FrontOffice/about/about.component'
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-     AboutComponent, AppointmentComponent, ClaimsComponent, ContactComponent, DamageComponent, EspaceClientComponent, EventComponent, FeatureComponent, GetAQuoteComponent, IndexComponent, NewsComponent, ParticulierComponent, ProfessionnelComponent, RetirementComponent, SavingsComponent, TeamComponent, TestimonialComponent
+     AboutComponent, AppointmentComponent, 
+     ClaimsComponent, ContactComponent, DamageComponent, EspaceClientComponent, 
+     EventComponent, FeatureComponent, GetAQuoteComponent, IndexComponent, NewsComponent, 
+     ParticulierComponent, ProfessionnelComponent, RetirementComponent, SavingsComponent, 
+     TeamComponent, TestimonialComponent, 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
