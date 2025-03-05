@@ -1,0 +1,48 @@
+.custom-backdrop {
+    background-color: transparent !important;
+  }
+  /* Card styling */
+.offer-card {
+    border: none;
+    border-radius: 8px;
+  }
+  
+  /* "Lire la suite" button: black background, white text */
+  .read-more-btn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s;
+  }
+  .read-more-btn:hover {
+    background-color: #333;
+  }
+  
+  /* "Postuler" button: orange background, white text */
+  .apply-btn {
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s;
+  }
+  .apply-btn:hover {
+    background-color: #e68a00;
+  }
+  
+  /* Transparent or semi-transparent modal backdrop */
+  .custom-backdrop {
+    background-color: rgba(0, 0, 0, 0.5) !important; /* or set to transparent if you want fully see-through */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1040; /* typically just behind .modal */
+  }
+  
+  /* Orange modal header */
+  .modal-header-orange {
+    background-color: #ff9800;
+    /* No need for color here if you apply .text-white to children */
+  }
+  
