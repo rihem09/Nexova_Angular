@@ -1,0 +1,82 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title>Edit Car Insurance</h2>
+  <mat-dialog-content class="dialog-content">
+    <form [formGroup]="insuranceForm">
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Make</mat-label>
+          <input matInput formControlName="make" required>
+          <mat-error *ngIf="insuranceForm.get('make')?.hasError('required')">
+            Make is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Model</mat-label>
+          <input matInput formControlName="model" required>
+          <mat-error *ngIf="insuranceForm.get('model')?.hasError('required')">
+            Model is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Year</mat-label>
+          <input matInput type="number" formControlName="year" required>
+          <mat-error *ngIf="insuranceForm.get('year')?.hasError('required')">
+            Year is required
+          </mat-error>
+          <mat-error *ngIf="insuranceForm.get('year')?.hasError('min')">
+            Year must be 1900 or later
+          </mat-error>
+          <mat-error *ngIf="insuranceForm.get('year')?.hasError('max')">
+            Year cannot be in the future
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Power</mat-label>
+          <input matInput type="number" formControlName="power" required>
+          <mat-error *ngIf="insuranceForm.get('power')?.hasError('required')">
+            Power is required
+          </mat-error>
+          <mat-error *ngIf="insuranceForm.get('power')?.hasError('min')">
+            Power must be greater than 0
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Fuel Type</mat-label>
+          <mat-select formControlName="fuelType" required>
+            <mat-option *ngFor="let fuelType of fuelTypes" [value]="fuelType">
+              {{fuelType}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="insuranceForm.get('fuelType')?.hasError('required')">
+            Fuel type is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="coverages-section">
+        <h3>Coverages</h3>
+        <div formGroupName="coverages" class="coverages-grid">
+          <div *ngFor="let option of coverageOptions" class="coverage-item">
+            <mat-checkbox [formControlName]="option.key">
+              {{option.label}}
+            </mat-checkbox>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="onCancelClick()">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="insuranceForm.invalid" (click)="onSaveClick()">
+      Save Changes
+    </button>
+  </mat-dialog-actions>
+</div>

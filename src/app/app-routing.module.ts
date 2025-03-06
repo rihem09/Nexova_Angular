@@ -19,8 +19,17 @@ import { RetirementComponent } from './FrontOffice/retirement/retirement.compone
 import { SavingsComponent } from './FrontOffice/savings/savings.component';
 import { TeamComponent } from './FrontOffice/team/team.component';
 import { TestimonialComponent } from './FrontOffice/testimonial/testimonial.component';
+<<<<<<< HEAD
 import { AssuranceListComponent } from './Microservices/Assurances/assurance-list/assurance-list.component';
 import { AddassuranceComponent } from './Microservices/Assurances/addassurance/addassurance.component';
+=======
+import {InsuranceFormComponent} from "./FrontOffice/insurance-form/insurance-form.component";
+import {CarInsuranceFormComponent} from "./FrontOffice/car-insurance-form/car-insurance-form.component";
+import {CompanyInsuranceFormComponent} from "./FrontOffice/company-insurance-form/company-insurance-form.component";
+import {CarInsuranceTableComponent} from "./FrontOffice/car-insurance-table/car-insurance-table.component";
+import {CompanyInsuranceTableComponent} from "./FrontOffice/company-insurance-table/company-insurance-table.component";
+import {InsuranceTableComponent} from "./FrontOffice/insurance-table/insurance-table.component";
+>>>>>>> main
 
 const routes: Routes = [
   { path: '', component: IndexComponent },  // ✅ Page d'accueil
@@ -41,9 +50,15 @@ const routes: Routes = [
   { path: 'savings', component: SavingsComponent },
   { path: 'team', component: TeamComponent },
   { path: 'testimonial', component: TestimonialComponent },
-  { 
-    path: 'dashboard', 
-    loadChildren: () => import('./BackOffice/backoffice.module').then(m => m.BackOfficeModule) 
+  { path: 'insurance', component: InsuranceFormComponent },
+  { path: 'carinsurance', component: CarInsuranceFormComponent },
+  { path: 'tablecarinsurance', component: CarInsuranceTableComponent },
+  { path: 'companyinsurance', component: CompanyInsuranceFormComponent },
+  { path: 'tablecompanyinsurance', component: CompanyInsuranceTableComponent },
+  { path: 'tableinsurance', component: InsuranceTableComponent },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./BackOffice/backoffice.module').then(m => m.BackOfficeModule)
   }
 ];
 

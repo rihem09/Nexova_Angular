@@ -1,8 +1,6 @@
-
- 
-  <!-- Topbar Start -->
-
+<!-- Topbar Start -->
 <div class="container-fluid topbar text-white-50 py-2 px-0 d-none d-lg-block">
+<<<<<<< HEAD
     <div class="row gx-0 align-items-center">
         <div class="col-lg-7 px-5 text-start">
             <div class="h-100 d-inline-flex align-items-center me-4">
@@ -145,10 +143,25 @@
             <li class="breadcrumb-item active" aria-current="page">Services</li>
           </ol>
         </nav>
+=======
+  <div class="row gx-0 align-items-center">
+    <div class="col-lg-7 px-5 text-start">
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <small class="fa fa-phone-alt me-2"></small>
+        <small>82 102 020</small>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <small class="far fa-envelope-open me-2"></small>
+        <small>relation.client@maghrebia.com.tn</small>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <small class="far fa-clock me-2"></small>
+        <small>Mon - Fri : 09 AM - 06 PM</small>
+>>>>>>> main
       </div>
     </div>
-    <!-- Page Header End -->
 
+<<<<<<< HEAD
     <!-- Service Start -->
     <div class="container-xxl py-5">
       <div class="container">
@@ -357,12 +370,32 @@
               </div>
           </div>
       </div>
+=======
+>>>>>>> main
   </div>
 </div>
-<!-- Footer End -->
+<!-- Topbar End -->
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
-      ><i class="bi bi-arrow-up"></i
-    ></a>
+<!-- Services Section with Material Dialogs -->
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="text-center mx-auto" style="max-width: 500px">
+      <h1 class="display-6 mb-5">We Provide Professional Insurance Services</h1>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-lg-4 col-md-6" *ngFor="let service of services">
+        <div class="service-item rounded h-100 p-5">
+          <div class="d-flex align-items-center ms-n5 mb-4">
+            <div class="service-icon flex-shrink-0 bg-primary rounded-end me-4">
+              <img class="img-fluid" [src]="service.icon" alt="" />
+            </div>
+            <h4 class="mb-0">{{ service.title }}</h4>
+          </div>
+          <p class="mb-4">{{ service.description }}</p>
+          <button mat-button color="primary" (click)="openServiceDialog(service.component)">Read More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 

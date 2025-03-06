@@ -1,0 +1,147 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title>{{ data.id ? 'Edit' : 'New' }} Insurance</h2>
+  <mat-dialog-content class="dialog-content">
+    <form [formGroup]="insuranceForm">
+      <!-- Home Information Section -->
+      <div class="section-header">
+        <mat-icon>home</mat-icon>
+        <h3>Home Information</h3>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Home Type</mat-label>
+          <mat-select formControlName="homeType" required>
+            <mat-option *ngFor="let type of homeTypes" [value]="type">
+              {{ formatHomeType(type) }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="isFieldInvalid('homeType')">
+            Home type is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Occupancy Type</mat-label>
+          <mat-select formControlName="occupancyType" required>
+            <mat-option *ngFor="let type of occupancyTypes" [value]="type">
+              {{ formatOccupancyType(type) }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="isFieldInvalid('occupancyType')">
+            Occupancy type is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Home Area (sqm)</mat-label>
+          <input matInput type="number" formControlName="homeArea" required>
+          <mat-error *ngIf="insuranceForm.get('homeArea')?.hasError('required')">
+            Home area is required
+          </mat-error>
+          <mat-error *ngIf="insuranceForm.get('homeArea')?.hasError('min')">
+            Home area must be greater than 0
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Number of Rooms</mat-label>
+          <input matInput type="number" formControlName="numberOfRooms" required>
+          <mat-error *ngIf="insuranceForm.get('numberOfRooms')?.hasError('required')">
+            Number of rooms is required
+          </mat-error>
+          <mat-error *ngIf="insuranceForm.get('numberOfRooms')?.hasError('min')">
+            Number of rooms must be at least 1
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Year of Construction</mat-label>
+          <input matInput type="number" formControlName="yearOfConstruction" required>
+          <mat-error *ngIf="insuranceForm.get('yearOfConstruction')?.hasError('required')">
+            Year of construction is required
+          </mat-error>
+          <mat-error *ngIf="insuranceForm.get('yearOfConstruction')?.hasError('min')">
+            Year must be 1900 or later
+          </mat-error>
+          <mat-error *ngIf="insuranceForm.get('yearOfConstruction')?.hasError('max')">
+            Year cannot be in the future
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Insurance Type</mat-label>
+          <mat-select formControlName="insuranceType" required>
+            <mat-option *ngFor="let type of insuranceTypes" [value]="type">
+              {{ type }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="isFieldInvalid('insuranceType')">
+            Insurance type is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Full Address</mat-label>
+          <textarea matInput formControlName="fullAddress" required rows="3"></textarea>
+          <mat-error *ngIf="isFieldInvalid('fullAddress')">
+            Full address is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Value and Security Section -->
+      <div class="section-header">
+        <mat-icon>security</mat-icon>
+        <h3>Value and Security</h3>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Insured Furniture Value</mat-label>
+          <input matInput type="number" formControlName="insuredFurnitureValue" required>
+          <span matPrefix>$&nbsp;</span>
+          <mat-error *ngIf="insuranceForm.get('insuredFurnitureValue')?.hasError('required')">
+            Insured furniture value is required
+          </mat-error>
+          <mat-error *ngIf="insuranceForm.get('insuredFurnitureValue')?.hasError('min')">
+            Value must be 0 or greater
+          </mat-error>
+        </mat-form-field>
+
+        <div class="checkbox-field">
+          <mat-checkbox formControlName="alarmSystem">
+            Alarm System Installed
+          </mat-checkbox>
+        </div>
+      </div>
+
+      <!-- Protection Options Section -->
+      <div class="section-header">
+        <mat-icon>shield</mat-icon>
+        <h3>Protection Options</h3>
+      </div>
+
+      <div class="protection-options-grid">
+        <div *ngFor="let option of protectionOptions" class="protection-option">
+          <mat-checkbox [formControlName]="option.key">
+            {{ option.label }}
+          </mat-checkbox>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="onCancelClick()">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="insuranceForm.invalid" (click)="onSaveClick()">
+      {{ data.id ? 'Update' : 'Create' }}
+    </button>
+  </mat-dialog-actions>
+</div>

@@ -1,0 +1,237 @@
+<div class="container mx-auto p-8">
+  <mat-vertical-stepper [linear]="true" #stepper>
+
+    <!-- Step 1: Vehicle Information -->
+    <mat-step [stepControl]="vehicleInfoForm">
+      <form [formGroup]="vehicleInfoForm" class="p-6">
+        <ng-template matStepLabel>Vehicle Information</ng-template>
+        <h2 class="text-3xl font-bold mb-6">Vehicle Information</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <mat-form-field class="w-full">
+            <mat-label>Make</mat-label>
+            <input matInput formControlName="make" required>
+            <mat-error *ngIf="vehicleInfoForm.get('make')?.invalid">Make is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full">
+            <mat-label>Model</mat-label>
+            <input matInput formControlName="model" required>
+            <mat-error *ngIf="vehicleInfoForm.get('model')?.invalid">Model is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="flex justify-end mt-6">
+          <button mat-button matStepperNext color="primary">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Step 2: Vehicle Details -->
+    <mat-step [stepControl]="vehicleDetailsForm">
+      <form [formGroup]="vehicleDetailsForm" class="p-6">
+        <ng-template matStepLabel>Vehicle Details</ng-template>
+        <h2 class="text-3xl font-bold mb-6">Vehicle Details</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <mat-form-field class="w-full">
+            <mat-label>Year</mat-label>
+            <input matInput type="number" formControlName="year" required>
+            <mat-error *ngIf="vehicleDetailsForm.get('year')?.errors">Year must be between 1900 and {{ currentYear }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full">
+            <mat-label>Engine Power (HP)</mat-label>
+            <input matInput type="number" formControlName="power" required>
+            <mat-error *ngIf="vehicleDetailsForm.get('power')?.invalid">Engine power is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-full">
+            <mat-label>Fuel Type</mat-label>
+            <mat-select formControlName="fuelType" required>
+              <mat-option *ngFor="let type of fuelTypes" [value]="type.value">{{ type.label }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="vehicleDetailsForm.get('fuelType')?.invalid">Fuel type is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="flex justify-between mt-6">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext color="primary">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Step 3: Coverages -->
+    <mat-step [stepControl]="coveragesForm">
+      <form [formGroup]="coveragesForm" class="p-6">
+        <ng-template matStepLabel>Optional Coverages</ng-template>
+        <h2 class="text-3xl font-bold mb-6">Optional Coverages</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <mat-checkbox formControlName="ANTI_THEFT">Anti-Theft Protection</mat-checkbox>
+          <mat-checkbox formControlName="GLASS_AND_WINDOW">Glass & Window Protection</mat-checkbox>
+          <mat-checkbox formControlName="WATER_DAMAGE">Water Damage Protection</mat-checkbox>
+          <mat-checkbox formControlName="FIRE_AND_EXPLOSION">Fire & Explosion Protection</mat-checkbox>
+          <mat-checkbox formControlName="NATURAL_DISASTERS">Natural Disaster Protection</mat-checkbox>
+          <mat-checkbox formControlName="TENANT_LIABILITY">Tenant Liability Protection</mat-checkbox>
+          <mat-checkbox formControlName="ASSISTANCE_24_7">24/7 Assistance</mat-checkbox>
+          <mat-checkbox formControlName="NEW_FOR_OLD">New for Old Protection</mat-checkbox>
+          <mat-checkbox formControlName="ELECTRICAL_DAMAGE">Electrical Damage Protection</mat-checkbox>
+        </div>
+        <div class="flex justify-between mt-6">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext color="primary">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Step 4: Insurance Creation and Price Calculation -->
+    <mat-step>
+      <ng-template matStepLabel>Insurance Creation</ng-template>
+      <div class="p-6">
+        <h2 class="text-3xl font-bold mb-6">Insurance Creation & Price Calculation</h2>
+
+        <!-- Insurance creation form summary -->
+        <div class="bg-gray-100 p-4 rounded-lg mb-6">
+          <h3 class="text-xl font-semibold mb-2">Insurance Information Summary</h3>
+          <p>Please review your car insurance details before proceeding to create your policy.</p>
+        </div>
+
+        <!-- Status messages -->
+        <div *ngIf="insuranceStatus === 'loading'" class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-6">
+          <p class="font-bold">Processing...</p>
+          <p>Creating your car insurance policy and calculating the premium.</p>
+        </div>
+        <div *ngIf="insuranceStatus === 'success'" class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6">
+          <p class="font-bold">Insurance Created Successfully!</p>
+          <p>Your calculated premium: <span class="font-bold">{{ calculatedPremium | currency:'EUR' }}</span></p>
+          <p>Please proceed to the payment step.</p>
+        </div>
+        <div *ngIf="insuranceStatus === 'error'" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6">
+          <p class="font-bold">Error!</p>
+          <p>There was an error creating your car insurance policy. Please try again or contact support.</p>
+        </div>
+
+        <div class="flex justify-between mt-6">
+          <button mat-button matStepperPrevious>Back</button>
+          <ng-container *ngIf="insuranceStatus === 'pending' || insuranceStatus === 'error'">
+            <button mat-raised-button color="primary" (click)="createCarInsurance()">
+              Calculate Premium
+            </button>
+          </ng-container>
+          <ng-container *ngIf="insuranceStatus === 'success'">
+            <button mat-button matStepperNext color="primary">
+              Proceed to Payment
+            </button>
+          </ng-container>
+          <ng-container *ngIf="insuranceStatus === 'loading'">
+            <button mat-raised-button disabled>
+              Calculating...
+            </button>
+          </ng-container>
+        </div>
+      </div>
+    </mat-step>
+
+    <!-- Step 5: Payment Information -->
+    <mat-step [stepControl]="paymentForm">
+      <ng-template matStepLabel>Payment</ng-template>
+      <form [formGroup]="paymentForm" class="p-6">
+        <h2 class="text-3xl font-bold mb-6">Payment Information</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Premium Display -->
+          <div class="col-span-2 bg-gray-100 p-4 rounded-lg">
+            <h3 class="text-xl font-semibold mb-2">Premium Amount</h3>
+            <p class="text-2xl text-primary">{{ calculatedPremium | currency:'EUR' }}</p>
+          </div>
+
+          <!-- Payment Method Selection -->
+          <mat-form-field class="w-full col-span-2">
+            <mat-label>Payment Method</mat-label>
+            <mat-select formControlName="paymentMethod" required>
+              <mat-option value="card">Credit Card</mat-option>
+              <mat-option value="bank">Bank Transfer</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Card Payment Fields -->
+          <ng-container *ngIf="paymentForm.get('paymentMethod')?.value === 'card'">
+            <mat-form-field class="w-full">
+              <mat-label>Card Number</mat-label>
+              <input matInput formControlName="cardNumber" required>
+            </mat-form-field>
+
+            <div class="grid grid-cols-2 gap-4">
+              <mat-form-field>
+                <mat-label>Expiry Date</mat-label>
+                <input matInput formControlName="expiryDate" placeholder="MM/YY" required>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>CVV</mat-label>
+                <input matInput type="password" formControlName="cvv" required>
+              </mat-form-field>
+            </div>
+          </ng-container>
+
+          <!-- Bank Transfer Fields -->
+          <ng-container *ngIf="paymentForm.get('paymentMethod')?.value === 'bank'">
+            <mat-form-field class="w-full">
+              <mat-label>Account Holder</mat-label>
+              <input matInput formControlName="accountHolder" required>
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+              <mat-label>IBAN</mat-label>
+              <input matInput formControlName="iban" required>
+            </mat-form-field>
+          </ng-container>
+        </div>
+
+        <!-- Status messages -->
+        <div *ngIf="paymentStatus === 'loading'" class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 my-6">
+          <p class="font-bold">Processing Payment...</p>
+          <p>Please wait while we process your payment.</p>
+        </div>
+        <div *ngIf="paymentStatus === 'error'" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 my-6">
+          <p class="font-bold">Payment Failed</p>
+          <p>There was an error processing your payment. Please try again or contact support.</p>
+        </div>
+
+        <div class="flex justify-between mt-6">
+          <button mat-button matStepperPrevious (click)="resetInsuranceCreation()">Back</button>
+          <ng-container *ngIf="paymentStatus === 'pending' || paymentStatus === 'error'">
+            <button mat-raised-button color="primary" (click)="processPayment()">
+              Process Payment
+            </button>
+          </ng-container>
+          <ng-container *ngIf="paymentStatus === 'success'">
+            <button mat-button matStepperNext color="primary">
+              Continue
+            </button>
+          </ng-container>
+          <ng-container *ngIf="paymentStatus === 'loading'">
+            <button mat-raised-button disabled>
+              Processing...
+            </button>
+          </ng-container>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Step 6: Confirmation -->
+    <mat-step>
+      <ng-template matStepLabel>Confirmation</ng-template>
+      <div class="p-6">
+        <h2 class="text-3xl font-bold mb-6">Confirmation</h2>
+        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6" *ngIf="paymentStatus === 'success'">
+          <p class="font-bold">Payment Successful!</p>
+          <p>Your car insurance policy has been created with policy number: <strong>#{{ insuranceId }}</strong></p>
+          <p>You will receive confirmation details via email shortly.</p>
+          <p class="mt-4">Premium paid: <strong>{{ calculatedPremium | currency:'EUR' }}</strong></p>
+        </div>
+
+        <div class="flex justify-end mt-6">
+          <button mat-raised-button color="primary" (click)="finishProcess()">Go to Dashboard</button>
+        </div>
+      </div>
+    </mat-step>
+
+  </mat-vertical-stepper>
+</div>
