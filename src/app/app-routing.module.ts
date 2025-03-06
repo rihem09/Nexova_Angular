@@ -18,7 +18,10 @@ import { ProfessionnelComponent } from './FrontOffice/professionnel/professionne
 import { RetirementComponent } from './FrontOffice/retirement/retirement.component';
 import { SavingsComponent } from './FrontOffice/savings/savings.component';
 import { TeamComponent } from './FrontOffice/team/team.component';
+
 import { TestimonialComponent } from './FrontOffice/testimonial/testimonial.component';
+import { RetirementBackComponent } from './BackOffice/retirement-back/retirement-back.component';
+import { CalculateurComponent } from './FrontOffice/calculateur/calculateur.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent }, // Page d'accueil
@@ -38,6 +41,8 @@ const routes: Routes = [
   { path: 'savings', component: SavingsComponent },
   { path: 'team', component: TeamComponent },
   { path: 'testimonial', component: TestimonialComponent },
+  {path: 'calculateur', component:CalculateurComponent},
+  {path:  'ListRetraite', component:RetirementBackComponent},
   { 
     path: 'dashboard', 
     loadChildren: () => import('./BackOffice/backoffice.module').then(m => m.BackOfficeModule) 

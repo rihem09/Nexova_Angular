@@ -23,11 +23,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RetirementBackComponent } from './BackOffice/retirement-back/retirement-back.component';
+import { CalculateurComponent } from './FrontOffice/calculateur/calculateur.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-     AboutComponent, AppointmentComponent, ClaimsComponent, ContactComponent, DamageComponent, EspaceClientComponent, EventComponent, FeatureComponent, GetAQuoteComponent, IndexComponent, NewsComponent, ParticulierComponent, ProfessionnelComponent, RetirementComponent, SavingsComponent, TeamComponent, TestimonialComponent
+     AboutComponent, AppointmentComponent, ClaimsComponent, ContactComponent, DamageComponent, EspaceClientComponent, EventComponent, FeatureComponent, GetAQuoteComponent, IndexComponent, NewsComponent, ParticulierComponent, ProfessionnelComponent, RetirementComponent, SavingsComponent, TeamComponent, TestimonialComponent, CalculateurComponent,
   ],
   imports: [
     BrowserModule,

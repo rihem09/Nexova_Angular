@@ -1,7 +1,7 @@
 
   <!-- Topbar Start -->
 
-<div class="container-fluid topbar text-white-50 py-2 px-0 d-none d-lg-block">
+  <div class="container-fluid topbar text-white-50 py-2 px-0 d-none d-lg-block">
     <div class="row gx-0 align-items-center">
         <div class="col-lg-7 px-5 text-start">
             <div class="h-100 d-inline-flex align-items-center me-4">
@@ -142,6 +142,7 @@
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item"><a href="#">Pages</a></li>
             <li class="breadcrumb-item active" aria-current="page">Services</li>
+            <button type="button" (click)="calculerEvolution()">Calculer</button>
           </ol>
         </nav>
       </div>
@@ -149,95 +150,30 @@
     <!-- Page Header End -->
 
     <!-- Service Start -->
-   <!-- Service Start -->
-<div class="container mt-4">
-  <h2 class="text-center mb-4">Inscription Retraite</h2>
-  <form class="p-4 rounded shadow-lg bg-white" (ngSubmit)="onSubmit()" #retraiteForm="ngForm">
-    
-    <!-- Date d'inscription -->
-    <div class="mb-3">
-      <label class="form-label">Date d'inscription:</label>
-      <input type="date" class="form-control" [(ngModel)]="retraite.dateInscri" name="dateInscription" required #dateInscription="ngModel"
-        [ngClass]="{'is-invalid': dateInscription.invalid && dateInscription.touched}" (change)="verifierDate()">
-      <div *ngIf="dateErreur" class="invalid-feedback">La date doit être aujourd'hui.</div>
-    </div>
-
-    <!-- Montant Cotisation -->
-    <div class="mb-3">
-      <label class="form-label">Montant Cotisation:</label>
-      <input type="number" class="form-control" [(ngModel)]="retraite.montantCoti" name="montantCotisation" required min="0" #montant="ngModel"
-        [ngClass]="{'is-invalid': montant.invalid && montant.touched}">
-      <div *ngIf="montant.invalid && montant.touched" class="invalid-feedback">Le montant ne peut pas être négatif.</div>
-    </div>
-
-    <!-- Âge Début Versement -->
-    <div class="mb-3">
-      <label class="form-label">Âge Début Versement:</label>
-      <input type="number" class="form-control" [(ngModel)]="retraite.ageDebutVersement" name="ageDebutVersement" required min="18" max="70" #ageDebut="ngModel"
-        [ngClass]="{'is-invalid': ageDebut.invalid && ageDebut.touched}">
-      <div *ngIf="ageDebut.invalid && ageDebut.touched" class="invalid-feedback">Âge entre 18 et 70 ans.</div>
-    </div>
-
-    <!-- Âge Fin Versement -->
-    <div class="mb-3">
-      <label class="form-label">Âge Fin Versement:</label>
-      <input type="number" class="form-control" [(ngModel)]="retraite.ageFinVersement" name="ageFinVersement" required min="ageDebutVersement" max="80" #ageFin="ngModel"
-        [ngClass]="{'is-invalid': ageFin.invalid && ageFin.touched}">
-      <div *ngIf="ageFin.invalid && ageFin.touched" class="invalid-feedback">Âge max 80 ans et doit être supérieur à l'âge de début.</div>
-    </div>
-
-    <!-- Bénéficiaire -->
-    <div class="mb-3">
-      <label class="form-label">Bénéficiaire:</label>
-      <input type="text" class="form-control" [(ngModel)]="retraite.beneficiaire" name="beneficiaire" required pattern="^[a-zA-Z ]+$" #beneficiaire="ngModel"
-        [ngClass]="{'is-invalid': beneficiaire.invalid && beneficiaire.touched}">
-      <div *ngIf="beneficiaire.invalid && beneficiaire.touched" class="invalid-feedback">Le nom ne doit contenir que des lettres.</div>
-    </div>
-
-    <!-- Boutons -->
-    <button type="submit" class="btn btn-primary w-100" [disabled]="retraiteForm.invalid">S'inscrire</button>
-    <button type="button" class="btn btn-secondary w-100 mt-2" (click)="calculer()">Calculer</button>
-    
-  </form>
-</div>
-<!-- Tableau des résultats -->
-<div *ngIf="calculsAffiches" class="mt-4">
-  <h3>Résultats Calculés</h3>
-  <table class="table table-bordered">
+    <!-- Tableau des résultats -->
+<table *ngIf="tableauResultats.length > 0">
     <thead>
       <tr>
+        <th>Année</th>
+        <th>Âge Assuré</th>
         <th>Prime Annuelle</th>
+        <th>Cumul Primes</th>
         <th>Capital Décès (Toutes Causes)</th>
         <th>Capital Décès (Accident)</th>
       </tr>
     </thead>
+    
     <tbody>
-      <tr>
-        <td>{{ primeAnnuelle.toFixed(2) }} TND</td>
-        <td>{{ capitalDecesToutesCauses.toFixed(2) }} TND</td>
-        <td>{{ capitalDecesAccident.toFixed(2) }} TND</td>
+      <tr *ngFor="let row of tableauResultats">
+        <td>{{ row.annee }}</td>
+        <td>{{ row.age }}</td>
+        <td>{{ row.primeAnnuelle }}</td>
+        <td>{{ row.cumulPrimes }}</td>
+        <td>{{ row.capitalDeces }}</td>
+        <td>{{ row.capitalDecesAccident }}</td>
       </tr>
     </tbody>
   </table>
-
-  <h3>Cumul des Primes</h3>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Âge</th>
-        <th>Cumul Primes (TND)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let cumul of cumulPrimes; let i = index">
-        <td>{{ retraite.ageDebutVersement + i }}</td>
-        <td>{{ cumul.toFixed(2) }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-  
     
     <!-- Service End -->
  <!-- Footer Start -->

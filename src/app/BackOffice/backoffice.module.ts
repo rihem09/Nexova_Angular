@@ -9,6 +9,10 @@ import { IndexComponent } from './index/index.component';
 import { MapsComponent } from './maps/maps.component';
 import { Sidebar2Component } from './sidebar2/sidebar2.component';
 import { TablesComponent } from './tables/tables.component';
+import { RetirementBackComponent } from './retirement-back/retirement-back.component';
+import { FormsModule } from '@angular/forms';
+import { SearchPipe } from '../search.pipe';
+
 
 const routes: Routes = [
   {
@@ -22,6 +26,7 @@ const routes: Routes = [
       {path: 'index', component: IndexComponent},
       {path: 'maps', component: MapsComponent},
       {path: 'sidebar2', component: Sidebar2Component},
+      
       {path: 'tables', component: TablesComponent},
      
       // Add more child routes here as needed
@@ -33,10 +38,14 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     BackOfficeComponent,
+    SearchPipe,
+    RetirementBackComponent,
+ 
     // Add more components here as needed
   ],
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(routes)
   ],
   exports: [RouterModule]
