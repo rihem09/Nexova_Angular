@@ -1,4 +1,3 @@
-
 import { TestimonialComponent } from './FrontOffice/testimonial/testimonial.component';
 import { TeamComponent } from './FrontOffice/team/team.component';
 import { SavingsComponent } from './FrontOffice/savings/savings.component';
@@ -23,7 +22,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FeedbackComponent } from './FrontOffice/feedback/feedback.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -32,14 +35,18 @@ import { HttpClientModule } from '@angular/common/http';
      ClaimsComponent, ContactComponent, DamageComponent, EspaceClientComponent, 
      EventComponent, FeatureComponent, GetAQuoteComponent, IndexComponent, NewsComponent, 
      ParticulierComponent, ProfessionnelComponent, RetirementComponent, SavingsComponent, 
-     TeamComponent, TestimonialComponent, 
+     TeamComponent, TestimonialComponent, FeedbackComponent, 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    NgxPaginationModule,
+    FullCalendarModule,
+    QRCodeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-/*
+
 export class Pass {
     idPass!: number;
     price!: string;
@@ -12,4 +12,4 @@ export class Pass {
     TYPE2 = 'VIP',
     TYPE3 = 'PREMIUM',
   }
-  */
+  

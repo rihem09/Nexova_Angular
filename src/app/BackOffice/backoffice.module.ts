@@ -9,11 +9,14 @@ import { IndexComponent } from './index/index.component';
 import { MapsComponent } from './maps/maps.component';
 import { Sidebar2Component } from './sidebar2/sidebar2.component';
 import { TablesComponent } from './tables/tables.component';
+import { BackeventComponent } from './backevent/backevent.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const routes: Routes = [
   {
     path: '',
-    
+    component: BackOfficeComponent,
     children: [
       { path: '', component: BackOfficeComponent },
       {path: 'forms', component: FormsComponent},
@@ -23,20 +26,27 @@ const routes: Routes = [
       {path: 'maps', component: MapsComponent},
       {path: 'sidebar2', component: Sidebar2Component},
       {path: 'tables', component: TablesComponent},
+      
      
       // Add more child routes here as needed
-    ]
-  },
+    ]},
+    { path: 'backevent', component: BackeventComponent },
+  
   // Add more routes here as needed
 ];
 
 @NgModule({
   declarations: [
     BackOfficeComponent,
+    BackeventComponent,
+    
     // Add more components here as needed
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgxPaginationModule,
     RouterModule.forChild(routes)
   ],
   exports: [RouterModule]

@@ -136,7 +136,7 @@
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
           <div class="carousel-item active" data-bs-interval="3000">
-              <img src="assets\FrontOffice\img\1696314675417.jpg" height="550" class="d-block w-100" alt="Image 1">
+              <img src="assets\FrontOffice\img\7-Unique-Corporate-Event-Ideas-for-2023.png" height="550" class="d-block w-100" alt="Image 1">
           </div>
           <div class="carousel-item" data-bs-interval="3000">
               <img src="assets\FrontOffice\img\CORPORATE_HEADER_2.jpg" height="550" class="d-block w-100" alt="Image 2">
@@ -156,6 +156,29 @@
   </div>
     <!-- Page Header End -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     <!-- Service Start -->
     <div class="container-xxl py-5">
       <div class="container">
@@ -163,18 +186,31 @@
           <h1 class="display-6 mb-5">
             Join and organize events with Maghrebia
           </h1>
+
         </div>
+
+
+
         <div class="row g-4 justify-content-center">
 
 
-
+          <button (click)="sortByDate()" class="btn btn-secondary mb-3" style="font-size: smaller; padding: 4px 8px;">
+            Sort by Date {{ sortAscending ? '↑' : '↓' }}
+          </button>
+          
           <!-- Affichage des événements -->
-<div class="row g-4 justify-content-center">
-  <div *ngFor="let event of events" class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-    <div class="service-item rounded h-100 p-5">
-      <div class="d-flex align-items-center ms-n5 mb-4">
-        <div class="service-icon flex-shrink-0 bg-primary rounded-end me-4">
-          <img class="img-fluid" src="img/icon/icon-10-light.png" alt="">
+          <div class="row g-4 justify-content-center">
+            <div *ngFor="let event of events | paginate: { itemsPerPage: itemsPerPage, currentPage: page }" 
+                 class="col-lg-4 col-md-6 wow fadeInUp" [ngClass]="{ 'top-rated-card': event.idEvent === topRatedEvent?.idEvent }"
+                 data-wow-delay="0.1s" data-wow-delay="0.1s">
+                 
+              <div class="service-item rounded h-100 p-5">
+                <div *ngIf="event.idEvent === topRatedEvent?.idEvent" class="badge bg-warning text-dark mb-2">
+                  ⭐ Top rated
+                </div>
+                <div class="d-flex align-items-center ms-n5 mb-4">
+                  <div class="service-icon flex-shrink-0 bg-primary rounded-end me-4">
+                    <img class="img-fluid" src="img/icon/icon-10-light.png" alt="">
         </div>
         <h4 class="mb-0">{{ event.title }}</h4>
       </div>
@@ -182,14 +218,45 @@
       <p><strong>Venue:</strong> {{ event.venue }}</p>
       <p><strong>Date:</strong> {{ event.dateEvent | date }}</p>
       <p><strong>Duration:</strong> {{ event.duration }} hours</p>
-      <p><strong>Entry pass:</strong> {{ event.eventp }}</p>
-      <a class="btn btn-light px-3" href="">More details</a>
+      <p><strong>Pass required:</strong> {{ event.eventp }}</p>
+      <qrcode [qrdata]="getEventQRData(event, feedbacks)" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+
+      <div class="d-flex">
+        <a [routerLink]="['/event', event.idEvent, 'feedbacks']" class="btn btn-light px-3 me-2">More details</a>
+        <button (click)="loadEventToUpdate(event)" class="btn btn-warning px-3 me-2">Update</button>
+        <button (click)="deleteEvent(event.idEvent)" class="btn btn-danger">Cancel event</button>
+    </div>
     </div>
   </div>
 </div>
 
+
+<!-- Pagination -->
+<div class="d-flex justify-content-center mt-4">
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>
+
+<!-- Calendar -->
+
+<!-- Button to toggle the calendar -->
+<button class="btn btn-secondary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#calendarCollapse" aria-expanded="false" aria-controls="calendarCollapse">
+  Calendar
+</button>
+
+<div id="calendarCollapse" class="collapse">
+  <full-calendar [options]="calendarOptions"></full-calendar>
+</div>
+
+
+
 <!-- Formulaire d'ajout d'événement -->
-<div class="container mt-4">
+<div class="ms-md-auto py-2 py-md-0">
+  <a class="btn btn-primary btn-round" (click)="toggleForm()">
+    {{ showForm ? 'Cancel' : 'Organize events' }}
+  </a>
+</div>
+
+<div class="container mt-4" *ngIf="showForm">
   <h2>Organize events</h2>
   <form (ngSubmit)="onSubmit()" #eventForm="ngForm">
     <div class="mb-3">
@@ -203,13 +270,13 @@
     </div>
 
     <div class="mb-3">
-      <label for="title" class="form-label">Venue</label>
-      <input type="text" class="form-control" id="title" [(ngModel)]="newEvent.venue" name="venue" required>
+      <label for="venue" class="form-label">Venue</label>
+      <input type="text" class="form-control" id="venue" [(ngModel)]="newEvent.venue" name="venue" required>
     </div>
 
     <div class="mb-3">
       <label for="dateEvent" class="form-label">Date</label>
-      <input type="date" class="form-control" id="dateEvent" [(ngModel)]="newEvent.dateEvent" name="dateEvent" required>
+      <input type="date" class="form-control" id="dateEvent" [(ngModel)]="newEvent.dateEvent" name="dateEvent" [min]="todayDate" required>
     </div>
 
     <div class="mb-3">
@@ -226,7 +293,13 @@
       </select>
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="!eventForm.form.valid">Submit</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!eventForm.form.valid">
+      {{ selectedEvent ? 'Update Event' : 'Submit' }}
+    </button>
+    
+    <button type="button" class="btn btn-secondary ms-2" *ngIf="selectedEvent" (click)="resetForm()">
+      Reset
+    </button>
   </form>
 </div>
 
