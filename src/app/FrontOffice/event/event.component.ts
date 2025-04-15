@@ -3,8 +3,8 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { EventService } from 'src/app/service/event.service';
 import { FeedbackService } from 'src/app/service/feedback.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CalendarOptions } from '@fullcalendar/core'; // Import FullCalendar options
-import dayGridPlugin from '@fullcalendar/daygrid'; // Import le plugin DayGrid
+import { CalendarOptions } from '@fullcalendar/core'; 
+import dayGridPlugin from '@fullcalendar/daygrid'; 
 import { forkJoin } from 'rxjs';
 
 /*
@@ -39,16 +39,23 @@ filteredEvents: any[] = [];
   todayDate: string = '';
   feedbacks: any=[];
   
-
-
-  newEvent = {
+  newEvent: {
+    idEvent?: number; // <- optionnel
+    title: string;
+    venue: string;
+    description: string;
+    dateEvent: string;
+    duration: number | null;
+    eventp: string;
+  } = {
     title: '',
-    venue:'',
+    venue: '',
     description: '',
     dateEvent: '',
     duration: null,
     eventp: ''
   };
+  
   constructor(private eventService: EventService,private feedbackService: FeedbackService, private snackBar: MatSnackBar) 
   { 
   }
@@ -57,7 +64,7 @@ filteredEvents: any[] = [];
   ngOnInit(): void {
     const today = new Date();
     this.todayDate = today.toISOString().split('T')[0];
-  
+    
     //chargement parallèle puis filtrage
     this.loadTopRatedEvent();
     this.loadEvents();
@@ -74,6 +81,7 @@ filteredEvents: any[] = [];
       next: (data) => {
         this.events = data;
         this.eventsLoaded = true;
+        this.updateCalendar();
         // this.filterEventsIfReady();
       },
       error: (err) => console.error('Erreur events:', err)
@@ -183,6 +191,7 @@ selectedEvent: any = null;
 updateEvent() {
   
   if (this.selectedEvent) {
+    this.newEvent.idEvent = this.selectedEvent.idEvent;
     this.eventService.modEvent(this.selectedEvent.idEvent, this.newEvent).subscribe(response => {
       console.log('Event updated:', response);
       this.loadEvents(); // Recharger les événements après la modification
