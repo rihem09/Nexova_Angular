@@ -24,16 +24,17 @@ import { Event } from 'src/app/models/event.model';
   ]
 })
 export class EventComponent implements OnInit{
-
+  searchTerm: string = '';
+  
   events: any=[];
   topRatedEvent: any;
 filteredEvents: any[] = [];  
   
  eventsLoaded = false;
  topEventLoaded = false;
-
+ 
   page: number = 1;  // Numéro de la page actuelle
-  itemsPerPage: number = 5; // Nombre d'événements par page
+  itemsPerPage: number = 6; // Nombre d'événements par page
   
   showForm: boolean = false;
   todayDate: string = '';
@@ -97,6 +98,18 @@ filteredEvents: any[] = [];
       },
       error: (err) => console.error('Erreur topRated:', err)
     });
+  }
+
+  
+  searchEvent() {
+    const term = this.searchTerm.trim();
+    if (term === '') {
+      this.loadEvents();
+    } else {
+      this.eventService.searchEvents(term).subscribe(data => {
+        this.events = data;
+      });
+    }
   }
 
   // filterEventsIfReady(): void {
@@ -241,8 +254,19 @@ calendarOptions: CalendarOptions = {
   expandRows: true, // Force l'affichage sur plusieurs lignes
 };
 
-/****************************  ***********************************/
-
+/**************************** PDF ***********************************/
+downloadEventsPdf() {
+  this.eventService.downloadAllEventsPdf().subscribe(blob => {
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'all_events.pdf';
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }, error => {
+    console.error('Erreur lors du téléchargement du PDF', error);
+  });
+}
 
 
 

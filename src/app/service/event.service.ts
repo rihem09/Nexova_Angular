@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Title } from '@angular/platform-browser';
 
 
-const BACK_URL = "http://localhost:8080";
+const BACK_URL = "http://localhost:8080/event/event";
 
 
 @Injectable({
@@ -14,32 +15,40 @@ export class EventService {
   constructor(private http:HttpClient) { }
 
   addEvent(event:any){
-    return this.http.post(BACK_URL + "/event/event/add_event", 
+    return this.http.post(BACK_URL + "/add_event", 
       event,{headers:new HttpHeaders()
         .set('Content-Type',"application/json")
   })
   }
 
   modEvent(id: number, event: any): Observable<any> {
-    return this.http.put(`${BACK_URL}/event/event/mod_event/${id}`, event);
+    return this.http.put(`${BACK_URL}/mod_event/${id}`, event);
   }
 
   showEvent(){
-    return this.http.get(BACK_URL + "/event/event/show_event");
+    return this.http.get(BACK_URL + "/show_event");
   }
 
+  
   deleteEvent(id: number): Observable<void> {
-    return this.http.delete<void>(`${BACK_URL}/event/event/del_event/${id}`);
+    return this.http.delete<void>(`${BACK_URL}/del_event/${id}`);
 }
 
-searchEvents(query: string): Observable<any> {
-  return this.http.get(`${BACK_URL}/event/event/search_event?q=${query}`);
-}
+ searchEvents(title: string): Observable<any> {
+    return this.http.get(`${BACK_URL}/search_event?title=${title}`);
+  }
 
 getTopRatedEvent(): Observable<any> {
-  return this.http.get<Event>(`${BACK_URL}/event/event/top-rated-event`);
+  return this.http.get<Event>(`${BACK_URL}/top-rated-event`);
+}
+
+downloadAllEventsPdf(): Observable<Blob> {
+  return this.http.get('http://localhost:8080/event/pdf/events', {
+    responseType: 'blob' //Pour les fichiers binaires
+  });
 }
 
 
-}
 
+
+}
