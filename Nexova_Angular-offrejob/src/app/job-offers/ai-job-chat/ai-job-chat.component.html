@@ -1,0 +1,9 @@
+<div class="chat-bar mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Décris le job que tu cherches..."
+      [(ngModel)]="userMessage"
+      (keydown.enter)="askAI()"
+    />
+  </div>

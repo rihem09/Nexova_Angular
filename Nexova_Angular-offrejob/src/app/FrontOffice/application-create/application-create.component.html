@@ -1,0 +1,476 @@
+<!-- Topbar Start -->
+
+<div class="container-fluid topbar text-white-50 py-2 px-0 d-none d-lg-block">
+    <div class="row gx-0 align-items-center">
+        <div class="col-lg-7 px-5 text-start">
+            <div class="h-100 d-inline-flex align-items-center me-4">
+                <small class="fa fa-phone-alt me-2"></small>
+                <small>82 102 020</small>
+            </div>
+            <div class="h-100 d-inline-flex align-items-center me-4">
+                <small class="far fa-envelope-open me-2"></small>
+                <small>relation.client@maghrebia.com.tn</small>
+            </div>
+            <div class="h-100 d-inline-flex align-items-center me-4">
+                <small class="far fa-clock me-2"></small>
+                <small>Mon - Fri : 09 AM - 06 PM</small>
+            </div>
+        </div>
+        <div class="col-lg-5 px-5 text-end">
+            <div class="h-100 d-inline-flex align-items-center">
+                <a class="text-white-50 ms-4" href="https://www.facebook.com/assurancesmaghrebiaTN" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+
+                <a class="text-white-50 ms-4" href="https://www.instagram.com/assurances_maghrebia_sahline/"
+                    target="_blank">
+                    <i class="fab fa-instagram"></i>
+
+                </a>
+                <!-- Ajoutez une marge ici -->
+                <a href="#" class="btn espace-client-btn ms-3" onclick="openModal()">Client Space</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Topbar End -->
+
+
+
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-white bar-light sticky-top px-4 px-lg-5">
+    <a href="index.html" class="navbar-brand d-flex align-items-center">
+        <img src="assets/FrontOffice/img/logoo.png" alt="Logo" class="logo-navbar">
+    </a>
+
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav mx-auto bg-light rounded pe-4 py-3 py-lg-0">
+            <a routerLink="" class="nav-item nav-link active">Home</a>
+
+
+
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">insurances</a>
+
+                <div class="dropdown-menu bg-light border-0 m-0">
+                    <a routerLink="/particulier" class="dropdown-item">Particuliers</a>
+                    <a routerLink="/professionnel" class="dropdown-item">Professionals & Companies</a>
+                </div>
+            </div>
+
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Damages & Claims</a>
+
+                <div class="dropdown-menu bg-light border-0 m-0">
+                    <a routerLink="/damage" class="dropdown-item">Damages</a>
+                    <a routerLink="/claims" class="dropdown-item">Claims</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Job Offers & Applications</a>
+
+                <div class="dropdown-menu bg-light border-0 m-0">
+                    <a routerLink="/job-offers" class="dropdown-item">Job Offers</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Retirements & Savings</a>
+
+                <div class="dropdown-menu bg-light border-0 m-0">
+                    <a routerLink="/retirement" class="dropdown-item">Retirements</a>
+                    <a routerLink="/savings" class="dropdown-item">Savings</a>
+                </div>
+            </div>
+            <a routerLink="/event" class="nav-item nav-link active">Events</a>
+            <!--  <div class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+                >Pages</a
+              >
+            
+              
+              <div class="dropdown-menu bg-light border-0 m-0">
+                <a href="feature.html" class="dropdown-item">Features</a>
+                <a href="appointment.html" class="dropdown-item">Appointment</a>
+                <a href="team.html" class="dropdown-item">Team Members</a>
+                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                <a href="404.html" class="dropdown-item">404 Page</a>
+              </div>
+            </div>-->
+            <a routerLink="/team" class="nav-item nav-link">Join Us</a>
+            <a routerLink="/contact" class="nav-item nav-link">Contact Us</a>
+            <a routerLink="/news" class="nav-item nav-link">News</a>
+        </div>
+
+    </div>
+    <a routerLink="/get-a-quote" class="btn btn-primary px-3 d-none d-lg-block">Get A Quote</a>
+
+</nav>
+<!-- Navbar End -->
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <h1 class="display-4 animated slideInDown mb-4">Services</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Services</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- <div class="container my-5">
+    <h2>Postuler à l'offre</h2>
+    <form class="row g-3">
+      <div class="col-md-6">
+        <label for="coverLetter" class="form-label">Cover Letter</label>
+        <input type="text" id="coverLetter" class="form-control"
+               [(ngModel)]="newApp.coverLetter" name="coverLetter" />
+      </div>
+  
+      <div class="col-md-6">
+        <label for="resume" class="form-label">Resume</label>
+        <input type="text" id="resume" class="form-control"
+               [(ngModel)]="newApp.resume" name="resume" />
+      </div>
+  
+      <div class="col-md-6">
+        <label for="applicationDate" class="form-label">Application Date</label>
+        <input type="date" id="applicationDate" class="form-control"
+               [(ngModel)]="newApp.applicationDate" name="applicationDate" />
+      </div>
+  
+      <div class="col-md-6">
+        <label for="interviewSchedule" class="form-label">Interview Schedule</label>
+        <input type="date" id="interviewSchedule" class="form-control"
+               [(ngModel)]="newApp.interviewSchedule" name="interviewSchedule" />
+      </div>
+  
+      <div class="col-12">
+        <button type="button" class="btn btn-sm me-2 read-more-btn" (click)="createApplication()">
+          Postuler
+        </button>
+      </div>
+    </form>
+  </div> -->
+  <div class="container my-5">
+    <h2>Postuler à l'offre</h2>
+    <!-- We use (ngSubmit)="onSubmit(applicationForm)" to handle form submission -->
+    <form #applicationForm="ngForm" (ngSubmit)="onSubmit(applicationForm)" class="row g-3" enctype="multipart/form-data">
+      <!-- Existing fields -->
+      <div class="col-md-6">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          [(ngModel)]="newApp.email"
+          name="email"
+          required
+          #email="ngModel"
+        />
+        <div *ngIf="email.invalid && email.touched" class="text-danger">
+          Email is required.
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <label for="nom" class="form-label">Nom</label>
+        <input
+          type="text"
+          id="nom"
+          class="form-control"
+          [(ngModel)]="newApp.nom"
+          name="nom"
+          required
+          #nom="ngModel"
+        />
+        <div *ngIf="nom.invalid && nom.touched" class="text-danger">
+          Nom is required.
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <label for="prenom" class="form-label">Prénom</label>
+        <input
+          type="text"
+          id="prenom"
+          class="form-control"
+          [(ngModel)]="newApp.prenom"
+          name="prenom"
+          required
+          #prenom="ngModel"
+        />
+        <div *ngIf="prenom.invalid && prenom.touched" class="text-danger">
+          Prénom is required.
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <label for="dateDeNaissance" class="form-label">Date de Naissance</label>
+        <input
+          type="date"
+          id="dateDeNaissance"
+          class="form-control"
+          [(ngModel)]="newApp.dateDeNaissance"
+          name="dateDeNaissance"
+          required
+          #dateDeNaissance="ngModel"
+        />
+        <div *ngIf="dateDeNaissance.invalid && dateDeNaissance.touched" class="text-danger">
+          Date de Naissance is required.
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <label for="adresse" class="form-label">Adresse</label>
+        <input
+          type="text"
+          id="adresse"
+          class="form-control"
+          [(ngModel)]="newApp.adresse"
+          name="adresse"
+          required
+          #adresse="ngModel"
+        />
+        <div *ngIf="adresse.invalid && adresse.touched" class="text-danger">
+          Adresse is required.
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <label for="codePostal" class="form-label">Code Postal</label>
+        <input
+          type="text"
+          id="codePostal"
+          class="form-control"
+          [(ngModel)]="newApp.codePostal"
+          name="codePostal"
+          required
+          #codePostal="ngModel"
+        />
+        <div *ngIf="codePostal.invalid && codePostal.touched" class="text-danger">
+          Code Postal is required.
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <label for="ville" class="form-label">Ville</label>
+        <input
+          type="text"
+          id="ville"
+          class="form-control"
+          [(ngModel)]="newApp.ville"
+          name="ville"
+          required
+          #ville="ngModel"
+        />
+        <div *ngIf="ville.invalid && ville.touched" class="text-danger">
+          Ville is required.
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <label for="telephone" class="form-label">Téléphone</label>
+        <input
+          type="text"
+          id="telephone"
+          class="form-control"
+          [(ngModel)]="newApp.telephone"
+          name="telephone"
+          required
+          #telephone="ngModel"
+        />
+        <div *ngIf="telephone.invalid && telephone.touched" class="text-danger">
+          Téléphone is required.
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <label for="niveauEtude" class="form-label">Niveau d'étude</label>
+        <input
+          type="text"
+          id="niveauEtude"
+          class="form-control"
+          [(ngModel)]="newApp.niveauEtude"
+          name="niveauEtude"
+          required
+          #niveauEtude="ngModel"
+        />
+        <div *ngIf="niveauEtude.invalid && niveauEtude.touched" class="text-danger">
+          Niveau d'étude is required.
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <label for="niveauExperience" class="form-label">Niveau d'expérience</label>
+        <input
+          type="text"
+          id="niveauExperience"
+          class="form-control"
+          [(ngModel)]="newApp.niveauExperience"
+          name="niveauExperience"
+          required
+          #niveauExperience="ngModel"
+        />
+        <div *ngIf="niveauExperience.invalid && niveauExperience.touched" class="text-danger">
+          Niveau d'expérience is required.
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <label for="specialiteEtude" class="form-label">Spécialité d'étude</label>
+        <input
+          type="text"
+          id="specialiteEtude"
+          class="form-control"
+          [(ngModel)]="newApp.specialiteEtude"
+          name="specialiteEtude"
+          required
+          #specialiteEtude="ngModel"
+        />
+        <div *ngIf="specialiteEtude.invalid && specialiteEtude.touched" class="text-danger">
+          Spécialité d'étude is required.
+        </div>
+      </div>
+  
+      <!-- File upload for cover letter and resume -->
+      <div class="col-md-6">
+        <label for="coverLetter" class="form-label">Cover Letter</label>
+        <input
+          type="file"
+          id="coverLetter"
+          class="form-control"
+          (change)="onFileChange($event, 'coverLetter')"
+          required
+        />
+      </div>
+  
+      <div class="col-md-6">
+        <label for="resume" class="form-label">Resume</label>
+        <input
+          type="file"
+          id="resume"
+          class="form-control"
+          (change)="onFileChange($event, 'resume')"
+          required
+        />
+      </div>
+    <!-- reCAPTCHA -->
+<div class="col-12 text-end">
+  <re-captcha
+    siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+    (resolved)="onCaptchaResolved($event)">
+  </re-captcha>
+</div>
+      <div class="col-12">
+        <button
+          type="submit"
+          class="btn btn-sm me-2 read-more-btn"
+          [disabled]="applicationForm.invalid || !captchaSuccess">
+          Postuler
+        </button>
+      </div>
+    </form>
+  </div>
+
+
+<!-- Bouton Postuler
+<div class="col-12 text-end mt-3">
+  <button
+    type="submit"
+    class="btn btn-sm me-2 read-more-btn"
+    [disabled]="applicationForm.invalid || !captchaSuccess">
+    Postuler
+  </button>
+</div> -->
+  
+  <!-- Footer Start -->
+<div class="container-fluid bg-orange footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s"
+style="background-color: #FF7F00;">
+<div class="container py-5">
+    <div class="row g-5">
+        <!-- Colonne Logo et Description -->
+        <div class="col-lg-3 col-md-6">
+            <h1 class="mb-4">
+                <h1 class="text-blue mb-4">
+                    <img class="img-fluid me-3" />Magheribia Insure
+                </h1>
+            </h1>
+            <p class="text-blue">
+                Maghrebia supports you with insurance solutions adapted to your needs, with confidence and security.
+            </p>
+            <div class="d-flex pt-2">
+                <a class="btn btn-outline-light btn-social me-2"
+                    href="https://www.facebook.com/assurancesmaghrebiaTN" target="_blank"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-outline-light btn-social me-2"
+                    href="https://www.instagram.com/assurances_maghrebia_sahline/" target="_blank"><i
+                        class="fab fa-instagram"></i></a>
+
+                <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/watch?v=L78Iqf3iu-k&t=76s"
+                    target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <!-- Colonne Adresse -->
+        <div class="col-lg-3 col-md-6">
+            <h5 class="text-blue mb-4">Adresse</h5>
+            <p class="text-blue"><i class="fa fa-map-marker-alt me-3"></i>Rue de la République, Tunis, Tunisie</p>
+            <p class="text-blue"><i class="fa fa-phone-alt me-3"></i>82 102 020</p>
+            <p class="text-blue"><i class="fa fa-envelope me-3"></i>relation.client@maghrebia.com.tn</p>
+        </div>
+
+        <!-- Colonne Liens Rapides -->
+        <div class="col-lg-3 col-md-6">
+            <h5 class="text-blue mb-4">Liens Rapides</h5>
+            <a class="btn btn-link text-blue" href="about.html">À propos</a>
+            <a class="btn btn-link text-blue" href="contact.html">Contact</a>
+            <a class="btn btn-link text-blue" href="service.html">Nos Services</a>
+            <a class="btn btn-link text-blue" href="#">Conditions Générales</a>
+            <a class="btn btn-link text-blue" href="#">Support Client</a>
+        </div>
+
+        <!-- Colonne Newsletter -->
+        <div class="col-lg-3 col-md-6">
+            <h5 class="text-blue mb-4">Newsletter</h5>
+            <p class="text-blue">Inscrivez-vous à notre newsletter pour recevoir les dernières offres et actualités.
+            </p>
+            <div class="position-relative mx-auto" style="max-width: 400px">
+                <input class="form-control bg-transparent text-blue w-100 py-3 ps-4 pe-5" type="email"
+                    placeholder="Votre email" />
+                <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
+                    style="background-color: #084d8f; border-color: #084d8f;">S'inscrire</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Copyright -->
+<div class="container-fluid copyright text-white-50" style="background-color: #E67000;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                &copy; <a class="text-blue" href="#">Assurances Maghrebia</a>, Tous droits réservés.
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                Designed by <a class="text-blue" href="https://htmlcodex.com" target="_blank">HTML Codex</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Footer End -->
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>

@@ -1,0 +1,44 @@
+.chart-container {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    padding: 20px;  /* Add some padding around the chart */
+    background-color: #f9f9f9;  /* Light background color for the chart container */
+    border-radius: 10px;  /* Rounded corners for the container */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  }
+  
+  ngx-charts-bar-vertical {
+    width: 80%;  /* Adjust the chart width */
+    height: 400px;  /* Set the height for better appearance */
+    border-radius: 10px;  /* Round edges for bars */
+  }
+  
+  ngx-charts-bar-vertical .bar {
+    transition: transform 0.3s ease, fill 0.3s ease; /* Smooth transitions for interaction */
+  }
+  
+  ngx-charts-bar-vertical .bar:hover {
+    transform: scale(1.05); /* Slightly enlarge bars on hover */
+    fill: #4CAF50; /* Change color on hover */
+  }
+  
+  /* Axis labels styling */
+  ngx-charts-bar-vertical .x-axis text,
+  ngx-charts-bar-vertical .y-axis text {
+    font-size: 14px;  /* Larger font size for better readability */
+    font-weight: bold;
+    color: #333; /* Darker color for better contrast */
+  }
+  
+  ngx-charts-bar-vertical .x-axis path,
+  ngx-charts-bar-vertical .y-axis path {
+    stroke-width: 2;
+  }
+  
+  ngx-charts-bar-vertical .x-axis line,
+  ngx-charts-bar-vertical .y-axis line {
+    stroke: #ddd;  /* Lighter color for axis lines */
+  }
+  
