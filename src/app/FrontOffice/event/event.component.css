@@ -115,9 +115,114 @@
   }
   
   .top-rated-card .service-item {
-    border: 2px solid gold;
-    background-color: #fff8e1; /* léger jaune */
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-    transition: all 0.3s ease-in-out;
+    border: 6px solid rgb(228, 204, 68);
   }
+  
+.event-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; 
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+ 
+  padding: 4px 0;
+}
+
+
+
+
+
+  .cluster-color-0 {
+    color: white;
+    background-color: #3498db; /* bleu */
+    padding: 4px 8px;
+    border-radius: 5px;
+    display: inline-block;
+  }
+  
+  .cluster-color-1 {
+    color: white;
+    background-color: #2ecc71; /* vert */
+    padding: 4px 8px;
+    border-radius: 5px;
+    display: inline-block;
+  }
+  
+  .cluster-color-2 {
+    color: white;
+    background-color: #e67e22; /* orange */
+    padding: 4px 8px;
+    border-radius: 5px;
+    display: inline-block;
+  }
+
+  .event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+  }
+  
+  
+  .event-card {
+    padding: 12px;
+    border-radius: 10px;
+    color: white;
+    min-height: 100px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .event-card:hover {
+    transform: scale(1.05);
+  }
+  
+  
+  .cluster-bg-0 {
+    background-color: #3498db; /* Bleu */
+  }
+  
+  .cluster-bg-1 {
+    background-color: #2ecc71; /* Vert */
+  }
+  
+  .cluster-bg-2 {
+    background-color: #e67e22; /* Orange */
+  }
+  
+  
+  .toggle-btn {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .toggle-btn:hover {
+    background-color: #333;
+  }
+
+  .top-rated-card {
+    text-align: center;
+    border-radius: 50px;
+    transition: all 0.4s ease-in-out;  /* Transition plus douce avec une durée plus longue */
+    position: relative;  /* Nécessaire pour le pseudo-élément :before */
+  }
+  
+  
+  .top-rated-card:hover {
+    transform: translateY(-40px);  /* Décalage plus marqué vers le haut */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);  /* Ombre plus intense et large */
+    border-color: #ffc407;  /* Bordure légèrement plus foncée au survol */
+  }
+  
+
+  
   

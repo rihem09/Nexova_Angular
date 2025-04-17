@@ -7,9 +7,12 @@ import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid'; 
 import { forkJoin } from 'rxjs';
 
-/*
-import { Event } from 'src/app/models/event.model';
-*/
+
+interface Event {
+  id_event: number;
+  
+}//pour toprated dans clustering
+
 
 @Component({
   selector: 'app-event',
@@ -36,6 +39,7 @@ filteredEvents: any[] = [];
   page: number = 1;  // Numéro de la page actuelle
   itemsPerPage: number = 6; // Nombre d'événements par page
   
+  showEvents: boolean = false;
   showForm: boolean = false;
   todayDate: string = '';
   feedbacks: any=[];
@@ -87,8 +91,20 @@ filteredEvents: any[] = [];
       },
       error: (err) => console.error('Erreur events:', err)
     });
+    this.eventService.clusteredEvents().subscribe({
+      next: (data) => {
+        this.events = data;
+      },
+      error: (err) => {
+        console.error("Erreur lors du chargement des événements", err);
+      }
+    });
   }
-
+  get topEventInList(): boolean {
+    return this.events?.some((e: Event) => e.id_event === this.topRatedEvent?.id_event);
+  }
+  
+  
   loadTopRatedEvent(): void {
     this.eventService.getTopRatedEvent().subscribe({
       next: (event) => {
