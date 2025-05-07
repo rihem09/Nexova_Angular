@@ -757,149 +757,43 @@
           <!-- End Navbar -->
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <div class="content">
-          <div class="page-inner">
-            <div class="page-header">
-              <h4 class="page-title">Event Management</h4>
-              <ul class="breadcrumbs">
-                <li class="nav-home">
-                  <a href="#">
-                    <i class="fas fa-home"></i>
-                  </a>
-                </li>
-                <li class="separator">
-                  <i class="fas fa-angle-right"></i>
-                </li>
-                <li class="nav-item">
-                  <a href="#">Events</a>
-                </li>
-              </ul>
-            </div>
-
+        <div class="main-content">
+          <div class="container-fluid">
             <div class="row">
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
-                    <div class="d-flex align-items-center">
-                      <h4 class="card-title">{{ isEditMode ? 'Edit Event' : 'Add New Event' }}</h4>
-                     
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" class="row g-3">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="title" class="form-label">Title</label>
-                          <input type="text" id="title" class="form-control" formControlName="title" 
-                                 [class.is-invalid]="eventForm.get('title')?.invalid && eventForm.get('title')?.touched"/>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="venue" class="form-label">Venue</label>
-                          <input type="text" id="venue" class="form-control" formControlName="venue"
-                                 [class.is-invalid]="eventForm.get('venue')?.invalid && eventForm.get('venue')?.touched"/>
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="description" class="form-label">Description</label>
-                          <textarea id="description" class="form-control" formControlName="description" rows="3"
-                                  [class.is-invalid]="eventForm.get('description')?.invalid && eventForm.get('description')?.touched"></textarea>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="dateEvent" class="form-label">Date</label>
-                          <input type="date" id="dateEvent" class="form-control" formControlName="dateEvent"
-                                 [class.is-invalid]="eventForm.get('dateEvent')?.invalid && eventForm.get('dateEvent')?.touched"/>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="duration" class="form-label">Duration (hours)</label>
-                          <input type="number" id="duration" class="form-control" formControlName="duration"
-                                 [class.is-invalid]="eventForm.get('duration')?.invalid && eventForm.get('duration')?.touched"/>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="eventp" class="form-label">Pass Type</label>
-                          <select id="eventp" class="form-control" formControlName="eventp"
-                                 [class.is-invalid]="eventForm.get('eventp')?.invalid && eventForm.get('eventp')?.touched">
-                            <option value="">Select a pass type</option>
-                            <option value="STANDARD">Standard</option>
-                            <option value="VIP">VIP</option>
-                            <option value="PREMIUM">Premium</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-12 mt-3">
-                        <button type="submit" class="btn btn-primary mr-2" [disabled]="eventForm.invalid">
-                          {{ isEditMode ? 'Update Event' : 'Add Event' }}
-                        </button>
-                        <button type="button" class="btn btn-secondary" (click)="resetForm()" *ngIf="isEditMode">
-                          Cancel
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-12">
-                <div class="card">
-                  <div class="card-header">
-                    <h4 class="card-title">Events List</h4>
+                    <h4 class="card-title">Feedback List</h4>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
-                      <table class="table table-hover">
+                      <table class="table">
                         <thead>
                           <tr>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Venue</th>
-                            <th>Date</th>
-                            <th>Duration</th>
-                            <th>Pass</th>
+                            <th>ID</th>
+                            <th>Rating</th>
+                            <th>Comment</th>
+                            <th>Event Name</th>
+
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let event of events">
-                            <td>{{ event.title }}</td>
-                            <td>{{ event.description | slice:0:50 }}...</td>
-                            <td>{{ event.venue }}</td>
-                            <td>{{ event.dateEvent | date:'mediumDate' }}</td>
-                            <td>{{ event.duration }} hours</td>
-                            <td colspan="2">{{ event.eventp }}</td>
+                          <tr *ngFor="let feedback of feedbacks">
+                            <td>{{feedback.idFeedback}}</td>
                             <td>
-                              <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-icon btn-warning" (click)="onEdit(event)" title="Edit">
-                                  <i class="fas fa-edit"></i>
-                                </button>
-                                <button type="button" class="btn btn-icon btn-danger" (click)="onDelete(event.idEvent)" title="Delete">
-                                  <i class="fas fa-trash"></i>
-                                </button>
+                              <div class="rating">
+                                <i *ngFor="let star of [1,2,3,4,5]" 
+                                   class="fas fa-star"
+                                   [style.color]="star <= feedback.rating ? '#ffc107' : '#e4e5e9'">
+                                </i>
                               </div>
+                            </td>
+                            <td>{{feedback.comment}}</td>
+                            <td>{{feedback.eventName}}</td>
+                            <td>
+                              <button class="btn btn-danger btn-sm" (click)="deleteFeedback(feedback.idFeed)">
+                                <i class="fas fa-trash"></i>
+                              </button>
                             </td>
                           </tr>
                         </tbody>
@@ -912,33 +806,7 @@
           </div>
         </div>
 
-        <footer class="footer">
-          <div class="container-fluid d-flex justify-content-between">
-            <nav class="pull-left">
-              <ul class="nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="http://www.themekita.com">
-                    ThemeKita
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#"> Help </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#"> Licenses </a>
-                </li>
-              </ul>
-            </nav>
-            <div class="copyright">
-              2024, made with <i class="fa fa-heart heart text-danger"></i> by
-              <a href="http://www.themekita.com">ThemeKita</a>
-            </div>
-            <div>
-              Distributed by
-              <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
-            </div>
-          </div>
-        </footer>
+       
       </div>
 
      

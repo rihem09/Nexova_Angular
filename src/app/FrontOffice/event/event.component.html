@@ -283,7 +283,7 @@
       <qrcode [qrdata]="getEventQRData(event, feedbacks)" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
 
       <div class="d-flex">
-        <a [routerLink]="['/event', event.idEvent, 'feedbacks']" class="btn btn-light px-3 me-2">More details</a>
+        <a [routerLink]="['/event', event.idEvent, 'feedbacks']" class="btn btn-light px-3 me-2">Feedbacks</a>
         <button (click)="loadEventToUpdate(event)" class="btn btn-warning px-3 me-2">Update</button>
         <button (click)="deleteEvent(event.idEvent)" class="btn btn-danger">Cancel event</button>
     </div>
@@ -300,11 +300,6 @@
 
 
 <!-- Formulaire d'ajout d'événement -->
-<div class="ms-md-auto py-2 py-md-0">
-  <a class="btn btn-primary btn-round" (click)="toggleForm()">
-    {{ showForm ? 'Cancel' : 'Organize events' }}
-  </a>
-</div>
 
 <div class="container mt-4" *ngIf="showForm">
   <h2>Organize events</h2>

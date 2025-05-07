@@ -12,6 +12,7 @@ import { TablesComponent } from './tables/tables.component';
 import { BackeventComponent } from './backevent/backevent.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { BackfeedbackComponent } from './backfeedback/backfeedback.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,7 @@ const routes: Routes = [
   declarations: [
     BackOfficeComponent,
     BackeventComponent,
+    BackfeedbackComponent,
     
     // Add more components here as needed
   ],

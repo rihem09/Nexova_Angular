@@ -21,6 +21,7 @@ import { SavingsComponent } from './FrontOffice/savings/savings.component';
 import { TeamComponent } from './FrontOffice/team/team.component';
 import { TestimonialComponent } from './FrontOffice/testimonial/testimonial.component';
 import { FeedbackComponent } from './FrontOffice/feedback/feedback.component';
+import { BackfeedbackComponent } from './BackOffice/backfeedback/backfeedback.component'; // Importer le composant Backfeedback
 
 
 const routes: Routes = [
@@ -47,6 +48,10 @@ const routes: Routes = [
   
     path: 'dashboard', 
     loadChildren: () => import('./BackOffice/backoffice.module').then(m => m.BackOfficeModule) 
+  },
+  {
+    path: 'dashboard/backfeedback',
+    component: BackfeedbackComponent
   }
 ];
 

@@ -115,8 +115,8 @@ filteredEvents: any[] = [];
       error: (err) => console.error('Erreur topRated:', err)
     });
   }
-
   
+  /*********************** QrCode ****************************************/
   searchEvent() {
     const term = this.searchTerm.trim();
     if (term === '') {
@@ -128,12 +128,7 @@ filteredEvents: any[] = [];
     }
   }
 
-  // filterEventsIfReady(): void {
-  //   if (this.topEventLoaded && this.eventsLoaded) {
-  //     this.filteredEvents = this.events.filter((e: any) => e.idEvent !== this.topRatedEvent.idEvent);
-  //   }
-  // }
-
+ 
   /*********************** QrCode ****************************************/
   getEventQRData(event: any, feedbacks: any[]): string {
     const feedbacksText = feedbacks.map((feedback, index) => {

@@ -22,7 +22,9 @@ export class EventService {
   }
 
   modEvent(id: number, event: any): Observable<any> {
-    return this.http.put(`${BACK_URL}/mod_event/${id}`, event);
+    return this.http.put(`${BACK_URL}/mod_event/${id}`, event, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    });
   }
 
   showEvent(){
